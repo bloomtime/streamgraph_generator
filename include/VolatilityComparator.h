@@ -17,13 +17,11 @@ public:
   VolatilityComparator(bool _ascending): ascending(_ascending) {}
 
   bool operator()(LayerRef pL, LayerRef qL) {
-    return (ascending ? pL->volatility < qL->volatility : pL->volatility > qL->volatility)
+      return (ascending ? pL->volatility < qL->volatility : pL->volatility > qL->volatility);
   }
 
-//  public boolean equals(Object p, Object q) {
-//    Layer pL = (Layer)p;
-//    Layer qL = (Layer)q;
-//    return pL.volatility == qL.volatility;
+//  bool equals(LayerRef pL, LayerRef qL) {
+//    return pL->volatility == qL->volatility;
 //  }
 
 };

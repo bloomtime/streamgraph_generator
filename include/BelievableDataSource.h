@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include "Layer.h"
-#include "DataSource.h"
+#include "StreamDataSource.h"
 #include "cinder/Rand.h"
 
 /**
@@ -12,15 +12,13 @@
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-class BelievableDataSource : public DataSource {
+class BelievableDataSource : public StreamDataSource {
     
 public:
   ci::Rand rnd;
 
   // seeded, so we can reproduce results
-  BelievableDataSource(): DataSource(2) {}
-
-  BelievableDataSource(int seed): rnd(seed) {}
+  BelievableDataSource(int seed=2): rnd(seed) {}
 
   LayerRefVec make(int numLayers, int sizeArrayLength) {
     LayerRefVec layers(numLayers);
@@ -28,7 +26,7 @@ public:
     for (int i = 0; i < numLayers; i++) {
       std::string name = "Layer #" + i;
       std::vector<float> size(sizeArrayLength);
-      makeRandomArray(sizeArrayLength);
+      makeRandomArray(size);
       layers[i] = Layer::create(name, size);
     }
 
@@ -45,8 +43,6 @@ protected:
     for (int i=0; i<5; i++) {
       addRandomBump(x);
     }
-
-    return x;
   }
 
   void addRandomBump(std::vector<float> &x) {

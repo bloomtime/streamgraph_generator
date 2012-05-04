@@ -19,10 +19,8 @@ public:
     return (ascending ? pL->onset < qL->onset : pL->onset < qL->onset);
   }
 
-//  public boolean equals(Object p, Object q){
-//    Layer pL = (Layer)p;
-//    Layer qL = (Layer)q;
-//    return pL.onset == qL.onset;
+//  bool equals(LayerRef pL, LayerRef qL){
+//    return pL->onset == qL->onset;
 //  }
 
-}
+};

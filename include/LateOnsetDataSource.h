@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DataSource.h"
+#include "StreamDataSource.h"
 #include "cinder/Rand.h"
 
 /**
@@ -11,7 +11,7 @@
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-class LateOnsetDataSource : public DataSource {
+class LateOnsetDataSource : public StreamDataSource {
 public:
   ci::Rand rnd;
 
@@ -44,8 +44,8 @@ protected:
   void addRandomBump(std::vector<float> &x, int onset, int duration) {
     float height  = rnd.nextFloat();
     int start     = fmax(0, onset);
-    int end       = min(x.size(), onset + duration);
-    int len       = end - onset;
+//    int end       = fmin(x.size(), onset + duration);
+//    int len       = end - onset;
 
     for (int i = start; i < x.size() && i < onset + duration; i++) {
       float xx = (float)(i - onset) / duration;

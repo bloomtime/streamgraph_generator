@@ -17,8 +17,11 @@ class LayerLayout {
 public:
 
   virtual void layout(LayerRefVec& layers) = 0;
+
   virtual std::string getName() = 0;
-    
+
+  virtual ~LayerLayout() {}
+
 protected:
   /**
    * We define our stacked graphs by layers atop a baseline.

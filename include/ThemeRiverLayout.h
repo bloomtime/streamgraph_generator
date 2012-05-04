@@ -17,7 +17,7 @@ public:
 
   void layout(LayerRefVec& layers) {
     // Set shape of baseline values.
-    int n=layers[0].size.size();
+    int n=layers[0]->size.size();
     int m=layers.size();
     std::vector<float> baseline(n);
 
@@ -26,7 +26,7 @@ public:
     for (int i = 0; i < n; i++) {
       baseline[i] = 0;
       for (int j = 0; j < m; j++) {
-        baseline[i] += layers[j].size[i];
+        baseline[i] += layers[j]->size[i];
       }
       baseline[i] *= 0.5;
     }

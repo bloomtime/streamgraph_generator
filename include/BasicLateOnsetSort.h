@@ -18,11 +18,9 @@ public:
     return "Late Onset Sorting, Top to Bottom";
   }
 
-  LayerRefVec& sort(LayerRefVec& layers) {
+  void sort(LayerRefVec& layers) {
     // first sort by onset
     std::sort(layers.begin(), layers.end(), OnsetComparator(true));
-
-    return layers;
   }
 
 };

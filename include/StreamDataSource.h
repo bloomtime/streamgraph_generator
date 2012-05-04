@@ -3,15 +3,15 @@
 #include "Layer.h"
 
 /**
- * DataSource
+ * StreamDataSource
  * Interface for creating a data source
  *
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-class DataSource {
+class StreamDataSource {
 
 public:
     virtual LayerRefVec make(int numLayers, int sizeArrayLength) = 0;
-
+    virtual ~StreamDataSource() {};
 };

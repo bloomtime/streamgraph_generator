@@ -19,6 +19,8 @@
 		C727C02E121B400300192073 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727C02D121B400300192073 /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C7FB19D6124BC0D70045AFD2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FB19D5124BC0D70045AFD2 /* AudioToolbox.framework */; };
 		C7FB19D6124BC0D70045AFD3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FB19D5124BC0D70045AFD3 /* CoreText.framework */; };
+		E26729D515548F4200B0BE20 /* layers-nyt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E26729D315548F4200B0BE20 /* layers-nyt.jpg */; };
+		E26729D615548F4200B0BE20 /* layers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E26729D415548F4200B0BE20 /* layers.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +42,7 @@
 		E2672991155466D700B0BE20 /* BasicLateOnsetSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicLateOnsetSort.h; path = ../include/BasicLateOnsetSort.h; sourceTree = "<group>"; };
 		E2672992155466D700B0BE20 /* BelievableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BelievableDataSource.h; path = ../include/BelievableDataSource.h; sourceTree = "<group>"; };
 		E2672993155466D700B0BE20 /* ColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorPicker.h; path = ../include/ColorPicker.h; sourceTree = "<group>"; };
-		E2672994155466D700B0BE20 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSource.h; path = ../include/DataSource.h; sourceTree = "<group>"; };
+		E2672994155466D700B0BE20 /* StreamDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamDataSource.h; path = ../include/StreamDataSource.h; sourceTree = "<group>"; };
 		E2672995155466D700B0BE20 /* InverseVolatilitySort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InverseVolatilitySort.h; path = ../include/InverseVolatilitySort.h; sourceTree = "<group>"; };
 		E2672996155466D700B0BE20 /* LastFMColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LastFMColorPicker.h; path = ../include/LastFMColorPicker.h; sourceTree = "<group>"; };
 		E2672997155466D700B0BE20 /* LateOnsetDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LateOnsetDataSource.h; path = ../include/LateOnsetDataSource.h; sourceTree = "<group>"; };
@@ -57,6 +59,8 @@
 		E26729A2155466D700B0BE20 /* ThemeRiverLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeRiverLayout.h; path = ../include/ThemeRiverLayout.h; sourceTree = "<group>"; };
 		E26729A3155466D700B0BE20 /* VolatilityComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VolatilityComparator.h; path = ../include/VolatilityComparator.h; sourceTree = "<group>"; };
 		E26729A4155466D700B0BE20 /* VolatilitySort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VolatilitySort.h; path = ../include/VolatilitySort.h; sourceTree = "<group>"; };
+		E26729D315548F4200B0BE20 /* layers-nyt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "layers-nyt.jpg"; path = "../resources/layers-nyt.jpg"; sourceTree = "<group>"; };
+		E26729D415548F4200B0BE20 /* layers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = layers.jpg; path = ../resources/layers.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E26729D315548F4200B0BE20 /* layers-nyt.jpg */,
+				E26729D415548F4200B0BE20 /* layers.jpg */,
 				43CD9798123D6504003B628E /* Icon.png */,
 				8D1107310486CEB800E47090 /* StreamGraphGenerator-Info.plist */,
 			);
@@ -172,7 +178,7 @@
 		E26729CF15547B1600B0BE20 /* data-sources */ = {
 			isa = PBXGroup;
 			children = (
-				E2672994155466D700B0BE20 /* DataSource.h */,
+				E2672994155466D700B0BE20 /* StreamDataSource.h */,
 				E2672992155466D700B0BE20 /* BelievableDataSource.h */,
 				E2672997155466D700B0BE20 /* LateOnsetDataSource.h */,
 			);
@@ -257,6 +263,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CD9799123D6504003B628E /* Icon.png in Resources */,
+				E26729D515548F4200B0BE20 /* layers-nyt.jpg in Resources */,
+				E26729D615548F4200B0BE20 /* layers.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

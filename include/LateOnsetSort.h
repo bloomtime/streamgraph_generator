@@ -19,10 +19,10 @@ public:
     return "Late Onset Sorting, Evenly Weighted";
   }
 
-  LayerRefVec& sort(LayerRefVec& layers) {
+  void sort(LayerRefVec& layers) {
     // first sort by onset
     std::sort(layers.begin(), layers.end(), OnsetComparator(true));
-    return orderToOutside(layers);
+    orderToOutside(layers);
   }
 
 };

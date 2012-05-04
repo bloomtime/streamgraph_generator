@@ -15,4 +15,5 @@ public:
 
   virtual std::string getName() = 0;
 
+  virtual ~ColorPicker() {}
 };

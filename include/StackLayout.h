@@ -17,7 +17,7 @@ public:
   }
 
   void layout(LayerRefVec& layers) {
-    int n = layers[0].size.size();
+    int n = layers[0]->size.size();
 
     // lay out layers, top to bottom.
     std::vector<float> baseline(n);

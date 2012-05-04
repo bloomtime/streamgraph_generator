@@ -19,11 +19,11 @@ public:
     return "Inverse Volatility Sorting, Evenly Weighted";
   }
 
-  LayerRefVec& sort(LayerRefVec& layers) {
+  void sort(LayerRefVec& layers) {
     // first sort by volatility
     std::sort(layers.begin(), layers.end(), VolatilityComparator(false));
 
-    return orderToOutside(layers);
+    orderToOutside(layers);
   }
 
 };

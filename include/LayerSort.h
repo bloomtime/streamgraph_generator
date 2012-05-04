@@ -17,8 +17,10 @@ class LayerSort {
 public:
   virtual std::string getName() = 0;
 
-  virtual LayerRefVec& sort(LayerRefVec& layers) = 0;
+  virtual void sort(LayerRefVec& layers) = 0;
 
+  virtual ~LayerSort() {}
+    
 protected:
   /**
    * Creates a 'top' and 'bottom' collection.
@@ -27,7 +29,7 @@ protected:
    * weighted graph. Reassemble such that the layers that appeared earliest
    * end up in the 'center' of the graph.
    */
-  LayerRefVec orderToOutside(LayerRefVec& layers) {
+  void orderToOutside(LayerRefVec& layers) {
     int j             = 0;
     int n             = layers.size();
     LayerRefVec newLayers(n);
@@ -56,8 +58,9 @@ protected:
     for (int i = 0; i < topCount; i++) {
       newLayers[j++] = layers[topList[i]];
     }
-      
-    return newLayers;
+    
+    // lots of copies but should be fast enough with shared_ptrs
+    layers = newLayers;
   }
 
 };

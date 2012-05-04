@@ -20,7 +20,7 @@ public:
   }
 
   void layout(LayerRefVec& layers) {
-    int n             = layers[0].size.size();
+    int n             = layers[0]->size.size();
     int m             = layers.size();
     std::vector<float> baseline(n);
     std::vector<float> center(n);
@@ -38,20 +38,20 @@ public:
       // find the total size of all layers at this point
       totalSize = 0;
       for (int j = 0; j < m; j++) {
-        totalSize += layers[j].size[i];
+        totalSize += layers[j]->size[i];
       }
 
       // account for the change of every layer to offset the center point
       for (int j = 0; j < m; j++) {
         if (i == 0) {
-          increase = layers[j].size[i];
+          increase = layers[j]->size[i];
           moveUp = 0.5f;
         } else {
-          belowSize = 0.5f * layers[j].size[i];
+          belowSize = 0.5f * layers[j]->size[i];
           for (int k = j + 1; k < m; k++) {
-            belowSize += layers[k].size[i];
+            belowSize += layers[k]->size[i];
           }
-          increase = layers[j].size[i] - layers[j].size[i - 1];
+          increase = layers[j]->size[i] - layers[j]->size[i - 1];
           moveUp = totalSize == 0 ? 0 : (belowSize / totalSize);
         }
         center[i] += (moveUp - 0.5) * increase;

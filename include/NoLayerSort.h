@@ -15,8 +15,6 @@ public:
     return "No Sorting";
   }
 
-  LayerRefVec& sort(LayerRefVec& layers) {
-    return layers;
-  }
+  void sort(LayerRefVec& layers) {}
 
 };
