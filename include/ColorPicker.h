@@ -1,3 +1,7 @@
+#pragma once
+
+#include "Layer.h"
+
 /**
  * ColorPicker
  * Interface for new coloring algorithms.
@@ -5,10 +9,10 @@
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public interface ColorPicker {
+class ColorPicker {
+public:
+  virtual void colorize(LayerRefVec& layers) = 0;
 
-  public void colorize(Layer[] layers);
+  virtual std::string getName() = 0;
 
-  public String getName();
-
-}
+};

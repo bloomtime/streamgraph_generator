@@ -1,3 +1,7 @@
+#pragma once
+
+#include "LayerLayout.h"
+
 /**
  * ThemeRiverLayout
  * Layout used by the authors of the ThemeRiver paper
@@ -5,17 +9,17 @@
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class ThemeRiverLayout extends LayerLayout {
-
-  public String getName() {
+class ThemeRiverLayout : public LayerLayout {
+public:
+  std::string getName() {
     return "ThemeRiver";
   }
 
-  public void layout(Layer[] layers) {
+  void layout(LayerRefVec& layers) {
     // Set shape of baseline values.
-    int n=layers[0].size.length;
-    int m=layers.length;
-    float[] baseline = new float[n];
+    int n=layers[0].size.size();
+    int m=layers.size();
+    std::vector<float> baseline(n);
 
     // ThemeRiver is perfectly symmetrical
     // the baseline is 1/2 of the total height at any point
@@ -30,4 +34,4 @@ public class ThemeRiverLayout extends LayerLayout {
     // Put layers on top of the baseline.
     stackOnBaseline(layers, baseline);
   }
-}
+};

@@ -1,3 +1,8 @@
+#pragma once
+
+#include <string>
+#include "Layer.h"
+
 /**
  * LayerLayout
  * Abstract Class for new stacked graph layout algorithms
@@ -8,26 +13,27 @@
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public abstract class LayerLayout {
+class LayerLayout {
+public:
 
-  abstract void layout(Layer[] layers);
-
-  abstract String getName();
-
+  virtual void layout(LayerRefVec& layers) = 0;
+  virtual std::string getName() = 0;
+    
+protected:
   /**
    * We define our stacked graphs by layers atop a baseline.
    * This method does the work of assigning the positions of each layer in an
    * ordered array of layers based on an initial baseline.
    */
-  protected void stackOnBaseline(Layer[] layers, float[] baseline) {
+  void stackOnBaseline(LayerRefVec& layers, std::vector<float>& baseline) {
     // Put layers on top of the baseline.
-    for (int i = 0; i < layers.length; i++) {
-      System.arraycopy(baseline, 0, layers[i].yBottom, 0, baseline.length);
-      for (int j = 0; j < baseline.length; j++) {
-        baseline[j] -= layers[i].size[j];
+    for (int i = 0; i < layers.size(); i++) {
+      layers[i]->yBottom = baseline; // creates copies
+      for (int j = 0; j < baseline.size(); j++) {
+        baseline[j] -= layers[i]->size[j];
       }
-      System.arraycopy(baseline, 0, layers[i].yTop, 0, baseline.length);
+      baseline = layers[i]->yTop;
     }
   }
 
-}
+};

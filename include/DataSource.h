@@ -1,3 +1,7 @@
+#pragma once
+
+#include "Layer.h"
+
 /**
  * DataSource
  * Interface for creating a data source
@@ -5,8 +9,9 @@
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public interface DataSource {
+class DataSource {
 
-  public Layer[] make(int numLayers, int sizeArrayLength);
+public:
+    virtual LayerRefVec make(int numLayers, int sizeArrayLength) = 0;
 
-}
+};

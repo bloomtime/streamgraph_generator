@@ -1,5 +1,7 @@
-import processing.core.*;
-import java.util.*;
+#pragma once
+
+#include "ColorPicker.h"
+#include "cinder/Rand.h"
 
 /**
  * RandomColorPicker
@@ -8,38 +10,29 @@ import java.util.*;
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class RandomColorPicker implements ColorPicker {
+class RandomColorPicker : public ColorPicker {
+public:
+  ci::Rand rnd;
 
-  public Random rnd;
-  public PApplet parent;
+  // seeded, so we can reproduce results
+  RandomColorPicker(int seed=2):rnd(seed) {}
 
-  public RandomColorPicker(PApplet parent) {
-    this(parent, 2);
-  }
-
-  public RandomColorPicker(PApplet parent, int seed) {
-    this.parent = parent;
-    parent.colorMode(PApplet.RGB, 255);
-
-    // seeded, so we can reproduce results
-    rnd = new Random(seed);
-  }
-
-  public String getName() {
+  std::string getName() {
     return "Random Colors";
   }
 
-  public void colorize(Layer[] layers) {
-    for (int i = 0; i < layers.length; i++) {
-      float h = PApplet.lerp(0.6f, 0.65f, rnd.nextFloat());
-      float s = PApplet.lerp(0.2f, 0.25f, rnd.nextFloat());
-      float b = PApplet.lerp(0.4f, 0.95f, rnd.nextFloat());
+  void colorize(LayerRefVec& layers) {
+    for (int i = 0; i < layers.size(); i++) {
+      float h = ci::lerp(0.6f, 0.65f, rnd.nextFloat());
+      float s = ci::lerp(0.2f, 0.25f, rnd.nextFloat());
+      float b = ci::lerp(0.4f, 0.95f, rnd.nextFloat());
 
-      layers[i].rgb = hsb2rgb(h, s, b);
+      layers[i]->rgb = hsb2rgb(h, s, b);
     }
   }
 
-  protected int hsb2rgb(float x, float y, float z) {
+protected:
+  ci::ColorA hsb2rgb(float x, float y, float z) {
     float calcR = 0;
     float calcG = 0;
     float calcB = 0;
@@ -92,9 +85,8 @@ public class RandomColorPicker implements ColorPicker {
     int calcGi = (int)(255 * calcG);
     int calcBi = (int)(255 * calcB);
     int calcAi = (int)(255 * calcA);
-    int calcColor = (calcAi << 24) | (calcRi << 16) | (calcGi << 8) | calcBi;
-
-    return calcColor;
+    
+    return ci::ColorA8u(calcRi, calcGi, calcBi, calcAi);
   }
 
-}
+};

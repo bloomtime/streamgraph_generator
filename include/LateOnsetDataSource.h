@@ -1,4 +1,7 @@
-import java.util.*;
+#pragma once
+
+#include "DataSource.h"
+#include "cinder/Rand.h"
 
 /**
  * LateOnsetData
@@ -8,54 +11,47 @@ import java.util.*;
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class LateOnsetDataSource implements DataSource {
+class LateOnsetDataSource : public DataSource {
+public:
+  ci::Rand rnd;
 
-  public Random rnd;
+  // default seeded, so we can reproduce results
+  LateOnsetDataSource(int seed=2): rnd(seed) {}
 
-  public LateOnsetDataSource() {
-    // seeded, so we can reproduce results
-    this(2);
-  }
-
-  public LateOnsetDataSource(int seed) {
-    rnd = new Random(seed);
-  }
-
-  public Layer[] make(int numLayers, int sizeArrayLength) {
-    Layer[] layers = new Layer[numLayers];
+  LayerRefVec make(int numLayers, int sizeArrayLength) {
+    LayerRefVec layers(numLayers);
 
     for (int i = 0; i < numLayers; i++) {
-      String name   = "Layer #" + i;
+      std::string name   = "Layer #" + i;
       int onset     = (int)(sizeArrayLength * (rnd.nextFloat() * 1.25 - 0.25));
       int duration  = (int)(rnd.nextFloat() * 0.75 * sizeArrayLength);
-      float[] size  = new float[sizeArrayLength];
-      size          = makeRandomArray(sizeArrayLength, onset, duration);
-      layers[i]     = new Layer(name, size);
+      std::vector<float> size(sizeArrayLength);
+      makeRandomArray(size, onset, duration);
+      layers[i]     = Layer::create(name, size);
     }
 
     return layers;
   }
 
-  protected float[] makeRandomArray(int n, int onset, int duration) {
-    float[] x = new float[n];
+protected:
+  void makeRandomArray(std::vector<float> &x, int onset, int duration) {
+    std::fill(x.begin(), x.end(), 0.0f);
 
     // add a single random bump
     addRandomBump(x, onset, duration);
-
-    return x;
   }
 
-  protected void addRandomBump(float[] x, int onset, int duration) {
+  void addRandomBump(std::vector<float> &x, int onset, int duration) {
     float height  = rnd.nextFloat();
-    int start     = Math.max(0, onset);
-    int end       = Math.min(x.length, onset + duration);
+    int start     = fmax(0, onset);
+    int end       = min(x.size(), onset + duration);
     int len       = end - onset;
 
-    for (int i = start; i < x.length && i < onset + duration; i++) {
+    for (int i = start; i < x.size() && i < onset + duration; i++) {
       float xx = (float)(i - onset) / duration;
-      float yy = (float)(xx * Math.exp(-10 * xx));
+      float yy = (float)(xx * exp(-10 * xx));
       x[i] += height * yy;
     }
   }
 
-}
+};

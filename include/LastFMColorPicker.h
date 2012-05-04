@@ -1,4 +1,9 @@
-import processing.core.*;
+#pragma once
+
+#include "ColorPicker.h"
+#include "cinder/Surface.h"
+#include "cinder/ImageIO.h"
+#include "cinder/app/App.h"
 
 /**
  * LastFMColorPicker
@@ -8,46 +13,48 @@ import processing.core.*;
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class LastFMColorPicker implements ColorPicker {
+class LastFMColorPicker : public ColorPicker {
 
-  public PImage source;
+public:
+  ci::Surface source;
 
-  public LastFMColorPicker(PApplet parent, String src) {
-    source = parent.loadImage(src);
+  LastFMColorPicker(std::string src) {
+    source = ci::loadImage(ci::app::loadResource(src));
   }
 
-  public String getName() {
+  std::string getName() {
     return "Listening History Color Scheme";
   }
 
-  public void colorize(Layer[] layers) {
+  void colorize(LayerRefVec& layers) {
     // find the largest layer to use as a normalizer
     float maxSum = 0;
-    for (int i=0; i<layers.length; i++) {
-      maxSum = (float) Math.max(maxSum, layers[i].sum);
+    for (int i=0; i<layers.size(); i++) {
+      maxSum = fmax(maxSum, layers[i]->sum);
     }
 
     // find the color for each layer
-    for (int i = 0; i < layers.length; i++) {
-      float normalizedOnset = (float)layers[i].onset / layers[i].size.length;
-      float normalizedSum = layers[i].sum / maxSum;
-      float shapedSum = (float)(1.0 - Math.sqrt(normalizedSum));
+    for (int i = 0; i < layers.size(); i++) {
+      float normalizedOnset = (float)layers[i]->onset / layers[i]->size.size();
+      float normalizedSum = layers[i]->sum / maxSum;
+      float shapedSum = (float)(1.0 - sqrt(normalizedSum));
 
-      layers[i].rgb = get(normalizedOnset, shapedSum);
+      layers[i]->rgb = get(normalizedOnset, shapedSum);
     }
   }
 
-  protected int get(float g1, float g2) {
+protected:
+  ci::ColorA get(float g1, float g2) {
     // get pixel coordinate based on provided parameters
-    int x = PApplet.floor(g1 * source.width);
-    int y = PApplet.floor(g2 * source.height);
+    int x = floor(g1 * source.getWidth());
+    int y = floor(g2 * source.getHeight());
 
     // ensure that the pixel is within bounds.
-    x = PApplet.constrain(x, 0, source.width - 1);
-    y = PApplet.constrain(y, 0, source.height - 1);
+    x = ci::constrain(x, 0, source.getWidth() - 1);
+    y = ci::constrain(y, 0, source.getHeight() - 1);
 
     // return the color at the requested pixel
-    return source.pixels[x + y * source.width];
+    return source.getPixel(ci::Vec2i(x,y));
   }
 
-}
+};

@@ -1,4 +1,6 @@
-import java.util.*;
+#pragma once
+
+#include "Layer.h"
 
 /**
  * VolatilityComparator
@@ -7,25 +9,21 @@ import java.util.*;
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class VolatilityComparator implements Comparator {
+class VolatilityComparator {
+public:
 
-  public boolean ascending;
+  bool ascending;
 
-  public VolatilityComparator(boolean ascending) {
-    this.ascending = ascending;
+  VolatilityComparator(bool _ascending): ascending(_ascending) {}
+
+  bool operator()(LayerRef pL, LayerRef qL) {
+    return (ascending ? pL->volatility < qL->volatility : pL->volatility > qL->volatility)
   }
 
-  public int compare(Object p, Object q) {
-    Layer pL = (Layer)p;
-    Layer qL = (Layer)q;
-    float volatilityDifference = pL.volatility - qL.volatility;
-    return (ascending ? 1 : -1) * (int)(10000000 * volatilityDifference);
-  }
+//  public boolean equals(Object p, Object q) {
+//    Layer pL = (Layer)p;
+//    Layer qL = (Layer)q;
+//    return pL.volatility == qL.volatility;
+//  }
 
-  public boolean equals(Object p, Object q) {
-    Layer pL = (Layer)p;
-    Layer qL = (Layer)q;
-    return pL.volatility == qL.volatility;
-  }
-
-}
+};

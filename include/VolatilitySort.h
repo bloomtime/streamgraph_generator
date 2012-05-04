@@ -1,4 +1,7 @@
-import java.util.*;
+#pragma once
+
+#include "LayerSort.h"
+#include "VolatilityComparator.h"
 
 /**
  * VolatilitySort
@@ -13,17 +16,18 @@ import java.util.*;
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class VolatilitySort extends LayerSort {
+class VolatilitySort : public LayerSort {
 
-  public String getName() {
+public:
+  std::string getName() {
     return "Volatility Sorting, Evenly Weighted";
   }
 
-  public Layer[] sort(Layer[] layers) {
+  LayerRefVec& sort(LayerRefVec& layers) {
     // first sort by volatility
-    Arrays.sort(layers, new VolatilityComparator(true));
+    sort(layers.begin(), layers.end(), VolatilityComparator(true));
 
     return orderToOutside(layers);
   }
 
-}
+};

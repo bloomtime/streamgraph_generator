@@ -1,4 +1,9 @@
-import java.util.*;
+#pragma once
+
+#include <algorithm>
+#include "Layer.h"
+#include "DataSource.h"
+#include "cinder/Rand.h"
 
 /**
  * BelievableDataSource
@@ -7,34 +12,34 @@ import java.util.*;
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class BelievableDataSource implements DataSource {
+class BelievableDataSource : public DataSource {
+    
+public:
+  ci::Rand rnd;
 
-  public Random rnd;
+  // seeded, so we can reproduce results
+  BelievableDataSource(): DataSource(2) {}
 
-  public BelievableDataSource() {
-    // seeded, so we can reproduce results
-    this(2);
-  }
+  BelievableDataSource(int seed): rnd(seed) {}
 
-  public BelievableDataSource(int seed) {
-    rnd = new Random(seed);
-  }
-
-  public Layer[] make(int numLayers, int sizeArrayLength) {
-    Layer[] layers = new Layer[numLayers];
+  LayerRefVec make(int numLayers, int sizeArrayLength) {
+    LayerRefVec layers(numLayers);
 
     for (int i = 0; i < numLayers; i++) {
-      String name   = "Layer #" + i;
-      float[] size  = new float[sizeArrayLength];
-      size          = makeRandomArray(sizeArrayLength);
-      layers[i]     = new Layer(name, size);
+      std::string name = "Layer #" + i;
+      std::vector<float> size(sizeArrayLength);
+      makeRandomArray(sizeArrayLength);
+      layers[i] = Layer::create(name, size);
     }
 
     return layers;
   }
 
-  protected float[] makeRandomArray(int n) {
-    float[] x = new float[n];
+protected:
+
+  void makeRandomArray(std::vector<float> &x) {
+      
+    std::fill(x.begin(), x.end(), 0.0f);
 
     // add a handful of random bumps
     for (int i=0; i<5; i++) {
@@ -44,15 +49,15 @@ public class BelievableDataSource implements DataSource {
     return x;
   }
 
-  protected void addRandomBump(float[] x) {
-    float height  = 1 / rnd.nextFloat();
-    float cx      = (float)(2 * rnd.nextFloat() - 0.5);
-    float r       = rnd.nextFloat() / 10;
+  void addRandomBump(std::vector<float> &x) {
+    float height  = 1.0f / rnd.nextFloat();
+    float cx      = (float)(2 * rnd.nextFloat() - 0.5f);
+    float r       = rnd.nextFloat() / 10.0f;
 
-    for (int i = 0; i < x.length; i++) {
-      float a = (i / (float)x.length - cx) / r;
-      x[i] += height * Math.exp(-a * a);
+    for (int i = 0; i < x.size(); i++) {
+      float a = (i / (float)x.size() - cx) / r;
+      x[i] += height * exp(-a * a);
     }
   }
 
-}
+};

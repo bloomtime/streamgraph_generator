@@ -13,7 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
-		43CD9799123D6504003B628E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 43CD9798123D6504003B628E /* Icon.png */; };		
+		43CD9799123D6504003B628E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 43CD9798123D6504003B628E /* Icon.png */; };
 		C725DFFE121DAC7F00FA186B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727C02B121B400300192073 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C725E001121DAC8F00FA186B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C725E000121DAC8F00FA186B /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C727C02E121B400300192073 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727C02D121B400300192073 /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -37,6 +37,26 @@
 		C727C02D121B400300192073 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		C7FB19D5124BC0D70045AFD2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C7FB19D5124BC0D70045AFD3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		E2672991155466D700B0BE20 /* BasicLateOnsetSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicLateOnsetSort.h; path = ../include/BasicLateOnsetSort.h; sourceTree = "<group>"; };
+		E2672992155466D700B0BE20 /* BelievableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BelievableDataSource.h; path = ../include/BelievableDataSource.h; sourceTree = "<group>"; };
+		E2672993155466D700B0BE20 /* ColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorPicker.h; path = ../include/ColorPicker.h; sourceTree = "<group>"; };
+		E2672994155466D700B0BE20 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSource.h; path = ../include/DataSource.h; sourceTree = "<group>"; };
+		E2672995155466D700B0BE20 /* InverseVolatilitySort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InverseVolatilitySort.h; path = ../include/InverseVolatilitySort.h; sourceTree = "<group>"; };
+		E2672996155466D700B0BE20 /* LastFMColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LastFMColorPicker.h; path = ../include/LastFMColorPicker.h; sourceTree = "<group>"; };
+		E2672997155466D700B0BE20 /* LateOnsetDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LateOnsetDataSource.h; path = ../include/LateOnsetDataSource.h; sourceTree = "<group>"; };
+		E2672998155466D700B0BE20 /* LateOnsetSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LateOnsetSort.h; path = ../include/LateOnsetSort.h; sourceTree = "<group>"; };
+		E2672999155466D700B0BE20 /* Layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Layer.h; path = ../include/Layer.h; sourceTree = "<group>"; };
+		E267299A155466D700B0BE20 /* LayerLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayerLayout.h; path = ../include/LayerLayout.h; sourceTree = "<group>"; };
+		E267299B155466D700B0BE20 /* LayerSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayerSort.h; path = ../include/LayerSort.h; sourceTree = "<group>"; };
+		E267299C155466D700B0BE20 /* MinimizedWiggleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MinimizedWiggleLayout.h; path = ../include/MinimizedWiggleLayout.h; sourceTree = "<group>"; };
+		E267299D155466D700B0BE20 /* NoLayerSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoLayerSort.h; path = ../include/NoLayerSort.h; sourceTree = "<group>"; };
+		E267299E155466D700B0BE20 /* OnsetComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnsetComparator.h; path = ../include/OnsetComparator.h; sourceTree = "<group>"; };
+		E267299F155466D700B0BE20 /* RandomColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomColorPicker.h; path = ../include/RandomColorPicker.h; sourceTree = "<group>"; };
+		E26729A0155466D700B0BE20 /* StackLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StackLayout.h; path = ../include/StackLayout.h; sourceTree = "<group>"; };
+		E26729A1155466D700B0BE20 /* StreamLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamLayout.h; path = ../include/StreamLayout.h; sourceTree = "<group>"; };
+		E26729A2155466D700B0BE20 /* ThemeRiverLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeRiverLayout.h; path = ../include/ThemeRiverLayout.h; sourceTree = "<group>"; };
+		E26729A3155466D700B0BE20 /* VolatilityComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VolatilityComparator.h; path = ../include/VolatilityComparator.h; sourceTree = "<group>"; };
+		E26729A4155466D700B0BE20 /* VolatilitySort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VolatilitySort.h; path = ../include/VolatilitySort.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +90,14 @@
 		};
 		00CFDFB81138492F0091E310 /* Headers */ = {
 			isa = PBXGroup;
+			children = (
+				E26729D115547B4200B0BE20 /* color-pickers */,
+				E26729D015547B1C00B0BE20 /* comparators */,
+				E26729CF15547B1600B0BE20 /* data-sources */,
+				E26729D215547B7400B0BE20 /* layouts */,
+				E26729CE15547B0C00B0BE20 /* sorts */,
+				E2672999155466D700B0BE20 /* Layer.h */,
+			);
 			name = Headers;
 			sourceTree = "<group>";
 		};
@@ -128,6 +156,60 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E26729CE15547B0C00B0BE20 /* sorts */ = {
+			isa = PBXGroup;
+			children = (
+				E267299B155466D700B0BE20 /* LayerSort.h */,
+				E2672991155466D700B0BE20 /* BasicLateOnsetSort.h */,
+				E2672995155466D700B0BE20 /* InverseVolatilitySort.h */,
+				E2672998155466D700B0BE20 /* LateOnsetSort.h */,
+				E267299D155466D700B0BE20 /* NoLayerSort.h */,
+				E26729A4155466D700B0BE20 /* VolatilitySort.h */,
+			);
+			name = sorts;
+			sourceTree = "<group>";
+		};
+		E26729CF15547B1600B0BE20 /* data-sources */ = {
+			isa = PBXGroup;
+			children = (
+				E2672994155466D700B0BE20 /* DataSource.h */,
+				E2672992155466D700B0BE20 /* BelievableDataSource.h */,
+				E2672997155466D700B0BE20 /* LateOnsetDataSource.h */,
+			);
+			name = "data-sources";
+			sourceTree = "<group>";
+		};
+		E26729D015547B1C00B0BE20 /* comparators */ = {
+			isa = PBXGroup;
+			children = (
+				E267299E155466D700B0BE20 /* OnsetComparator.h */,
+				E26729A3155466D700B0BE20 /* VolatilityComparator.h */,
+			);
+			name = comparators;
+			sourceTree = "<group>";
+		};
+		E26729D115547B4200B0BE20 /* color-pickers */ = {
+			isa = PBXGroup;
+			children = (
+				E2672993155466D700B0BE20 /* ColorPicker.h */,
+				E2672996155466D700B0BE20 /* LastFMColorPicker.h */,
+				E267299F155466D700B0BE20 /* RandomColorPicker.h */,
+			);
+			name = "color-pickers";
+			sourceTree = "<group>";
+		};
+		E26729D215547B7400B0BE20 /* layouts */ = {
+			isa = PBXGroup;
+			children = (
+				E267299A155466D700B0BE20 /* LayerLayout.h */,
+				E267299C155466D700B0BE20 /* MinimizedWiggleLayout.h */,
+				E26729A0155466D700B0BE20 /* StackLayout.h */,
+				E26729A1155466D700B0BE20 /* StreamLayout.h */,
+				E26729A2155466D700B0BE20 /* ThemeRiverLayout.h */,
+			);
+			name = layouts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,7 +237,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "StreamGraphGenerator" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -192,6 +278,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = ../../../Code/Cinder/Cinder;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -202,8 +289,14 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "StreamGraphGenerator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "\"$(CINDER_PATH)/lib/libcinder-iphone_d.a\" -lz";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "\"$(CINDER_PATH)/lib/libcinder-iphone-sim_d.a\" -lz";
+				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
+					"\"$(CINDER_PATH)/lib/libcinder-iphone_d.a\"",
+					"-lz",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
+					"\"$(CINDER_PATH)/lib/libcinder-iphone-sim_d.a\"",
+					"-lz",
+				);
 				PRODUCT_NAME = StreamGraphGenerator;
 			};
 			name = Debug;
@@ -212,6 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = ../../../Code/Cinder/Cinder;
 				COPY_PHASE_STRIP = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -220,8 +314,14 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "StreamGraphGenerator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "\"$(CINDER_PATH)/lib/libcinder-iphone.a\" -lz";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "\"$(CINDER_PATH)/lib/libcinder-iphone-sim.a\" -lz";
+				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
+					"\"$(CINDER_PATH)/lib/libcinder-iphone.a\"",
+					"-lz",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
+					"\"$(CINDER_PATH)/lib/libcinder-iphone-sim.a\"",
+					"-lz",
+				);
 				PRODUCT_NAME = StreamGraphGenerator;
 			};
 			name = Release;
@@ -229,7 +329,8 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "armv7";
+				ARCHS = armv7;
+				CINDER_PATH = ../../../../Documents/Code/Cinder/Cinder;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -240,7 +341,6 @@
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				CINDER_PATH = "../../../../Documents/Code/Cinder/Cinder";
 				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" include";
 			};
 			name = Debug;
@@ -248,7 +348,8 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "armv7";
+				ARCHS = armv7;
+				CINDER_PATH = ../../../../Documents/Code/Cinder/Cinder;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -258,7 +359,6 @@
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				CINDER_PATH = "../../../../Documents/Code/Cinder/Cinder";
 				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" include";
 			};
 			name = Release;

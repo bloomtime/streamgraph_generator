@@ -1,4 +1,7 @@
-import java.util.*;
+#pragma once
+
+#include "LayerSort.h"
+#include "OnsetComparator.h"
 
 /**
  * BasicLateOnsetSort
@@ -8,17 +11,18 @@ import java.util.*;
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class BasicLateOnsetSort extends LayerSort {
-
-  public String getName() {
+class BasicLateOnsetSort : public LayerSort {
+public:
+    
+  std::string getName() {
     return "Late Onset Sorting, Top to Bottom";
   }
 
-  public Layer[] sort(Layer[] layers) {
+  LayerRefVec& sort(LayerRefVec& layers) {
     // first sort by onset
-    Arrays.sort(layers, new OnsetComparator(true));
+    std::sort(layers.begin(), layers.end(), OnsetComparator(true));
 
     return layers;
   }
 
-}
+};

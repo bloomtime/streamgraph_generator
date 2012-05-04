@@ -4,6 +4,32 @@
 #include "cinder/gl/Texture.h"
 #include "cinder/Camera.h"
 
+#include "ColorPicker.h"
+#include "LastFMColorPicker.h"
+#include "RandomColorPicker.h"
+
+#include "OnsetComparator.h"
+#include "VolatilityComparator.h"
+
+#include "DataSource.h"
+#include "BelievableDataSource.h"
+#include "LateOnsetDataSource.h"
+
+#include "LayerLayout.h"
+#include "MinimizedWiggleLayout.h"
+#include "StackLayout.h"
+#include "StreamLayout.h"
+#include "ThemeRiverLayout.h"
+
+#include "LayerSort.h"
+#include "BasicLateOnsetSort.h"
+#include "InverseVolatilitySort.h"
+#include "LateOnsetSort.h"
+#include "NoLayerSort.h"
+#include "VolatilitySort.h"
+
+#include "Layer.h"
+
 using namespace ci;
 using namespace ci::app;
 

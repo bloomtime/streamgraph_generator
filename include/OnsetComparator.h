@@ -1,4 +1,6 @@
-import java.util.*;
+#pragma once
+
+#include "Layer.h"
 
 /**
  * OnsetSort
@@ -7,24 +9,20 @@ import java.util.*;
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class OnsetComparator implements Comparator {
+class OnsetComparator {
+public:
+  bool ascending;
 
-  public boolean ascending;
+  OnsetComparator(bool _ascending): ascending(_ascending) {}
 
-  public OnsetComparator(boolean ascending) {
-    this.ascending = ascending;
+  bool operator()(LayerRef pL, LayerRef qL) {
+    return (ascending ? pL->onset < qL->onset : pL->onset < qL->onset);
   }
 
-  public int compare(Object p, Object q){
-    Layer pL = (Layer)p;
-    Layer qL = (Layer)q;
-    return (ascending ? 1 : -1) * (pL.onset - qL.onset);
-  }
-
-  public boolean equals(Object p, Object q){
-    Layer pL = (Layer)p;
-    Layer qL = (Layer)q;
-    return pL.onset == qL.onset;
-  }
+//  public boolean equals(Object p, Object q){
+//    Layer pL = (Layer)p;
+//    Layer qL = (Layer)q;
+//    return pL.onset == qL.onset;
+//  }
 
 }

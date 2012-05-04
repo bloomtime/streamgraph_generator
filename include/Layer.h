@@ -1,3 +1,12 @@
+#pragma once
+
+#include <string>
+#include "cinder/Cinder.h"
+#include "cinder/Color.h"
+
+typedef std::shared_ptr<class Layer> LayerRef;
+typedef std::vector<LayerRef>        LayerRefVec;
+
 /**
  * Layer
  * Represents a layer in a layered graph, maintaining properties which
@@ -6,36 +15,41 @@
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class Layer {
+class Layer {
+public:
+  std::string   name;
+  std::vector<float>  size;
+  std::vector<float>  yBottom;
+  std::vector<float>  yTop;
+  ci::ColorA      rgb;
+  int      onset;
+  int      end;
+  float    sum;
+  float    volatility;
 
-  public String   name;
-  public float[]  size;
-  public float[]  yBottom;
-  public float[]  yTop;
-  public int      rgb;
-  public int      onset;
-  public int      end;
-  public float    sum;
-  public float    volatility;
-
-  public Layer(String name, float[] size) {
+  static LayerRef create(std::string name, std::vector<float> size) {
+    return LayerRef(new Layer(name,size));
+  }
+    
+private:
+  Layer(std::string _name, std::vector<float> _size):
+    name(_name), 
+    size(_size) {
 
     // check for reasonable data
-    for (int i = 0; i < size.length; i++) {
+    for (int i = 0; i < size.size(); i++) {
       if (size[i] < 0) {
-        throw new IllegalArgumentException("No negative sizes allowed.");
+        throw std::runtime_error("No negative sizes allowed.");
       }
     }
 
-    this.name   = name;
-    this.size   = size;
-    yBottom     = new float[size.length];
-    yTop        = new float[size.length];
+    yBottom.resize(size.size());
+    yTop.resize(size.size());
     sum         = 0;
     volatility  = 0;
     onset       = -1;
 
-    for (int i = 0; i < size.length; i++) {
+    for (int i = 0; i < size.size(); i++) {
 
       // sum is the summation of all points
       sum += size[i];
@@ -52,12 +66,12 @@ public class Layer {
 
       // volatility is the maximum change between any two consecutive points
       if (i > 0) {
-        volatility = Math.max(
+        volatility = fmax(
           volatility,
-          Math.abs(size[i] - size[i-1])
+          fabs(size[i] - size[i-1])
         );
       }
     }
   }
 
-}
+};

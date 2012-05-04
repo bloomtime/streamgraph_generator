@@ -1,3 +1,7 @@
+#pragma once
+
+#include "LayerLayout.h"
+
 /**
  * StreamLayout
  * The layout used in the Streamgraph stacked graph
@@ -8,17 +12,18 @@
  * @author Lee Byron
  * @author Martin Wattenberg
  */
-public class StreamLayout extends LayerLayout {
+class StreamLayout : public LayerLayout {
 
-  public String getName() {
+public:
+  std::string getName() {
     return "Original Streamgraph Layout";
   }
 
-  public void layout(Layer[] layers) {
-    int n             = layers[0].size.length;
-    int m             = layers.length;
-    float[] baseline  = new float[n];
-    float[] center    = new float[n];
+  void layout(LayerRefVec& layers) {
+    int n             = layers[0].size.size();
+    int m             = layers.size();
+    std::vector<float> baseline(n);
+    std::vector<float> center(n);
     float totalSize;
     float moveUp;
     float increase;
@@ -60,4 +65,4 @@ public class StreamLayout extends LayerLayout {
     stackOnBaseline(layers, baseline);
   }
 
-}
+};
