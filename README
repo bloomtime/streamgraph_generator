@@ -1,6 +1,8 @@
-This is the processing application used to generate the images in the paper:
+This is a Cinder port of the processing application used to generate the images in the paper:
 Stacked Graphs - Geometry & Aesthetics
 
-It is published here as an educational library, to provide code examples to support the paper.
-
 This code is copyright under the BSD license.
+
+Ported to Cinder by Bloom Studio, Inc. http://bloom.io
+
+Original is from http://leebyron.com/else/streamgraph/
