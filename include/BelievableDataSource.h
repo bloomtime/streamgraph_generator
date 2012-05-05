@@ -26,7 +26,7 @@ public:
 
     for (int i = 0; i < numLayers; i++) {
       std::string name = "Layer #" + ci::toString(i);
-      std::vector<float> size(sizeArrayLength);
+      std::vector<float> size(sizeArrayLength, 0.0f);
       makeRandomArray(size);
       layers[i] = Layer::create(name, size);
     }
@@ -36,10 +36,7 @@ public:
 
 protected:
 
-  void makeRandomArray(std::vector<float> &x) {
-      
-    std::fill(x.begin(), x.end(), 0.0f);
-
+  void makeRandomArray(std::vector<float> &x) {      
     // add a handful of random bumps
     for (int i=0; i<5; i++) {
       addRandomBump(x);

@@ -20,8 +20,7 @@ public:
     int n = layers[0]->size.size();
 
     // lay out layers, top to bottom.
-    std::vector<float> baseline(n);
-    std::fill(baseline.begin(), baseline.end(), 0);
+    std::vector<float> baseline(n, 0.0f);
 
     // Put layers on top of the baseline.
     stackOnBaseline(layers, baseline);
