@@ -43,8 +43,8 @@ private:
       }
     }
 
-    yBottom.resize(size.size());
-    yTop.resize(size.size());
+    yBottom.resize(size.size(), 0.0f);
+    yTop.resize(size.size(), 0.0f);
     sum         = 0;
     volatility  = 0;
     onset       = -1;

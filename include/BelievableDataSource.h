@@ -4,6 +4,7 @@
 #include "Layer.h"
 #include "StreamDataSource.h"
 #include "cinder/Rand.h"
+#include "cinder/Utilities.h"
 
 /**
  * BelievableDataSource
@@ -24,7 +25,7 @@ public:
     LayerRefVec layers(numLayers);
 
     for (int i = 0; i < numLayers; i++) {
-      std::string name = "Layer #" + i;
+      std::string name = "Layer #" + ci::toString(i);
       std::vector<float> size(sizeArrayLength);
       makeRandomArray(size);
       layers[i] = Layer::create(name, size);
@@ -47,11 +48,11 @@ protected:
 
   void addRandomBump(std::vector<float> &x) {
     float height  = 1.0f / rnd.nextFloat();
-    float cx      = (float)(2 * rnd.nextFloat() - 0.5f);
+    float cx      = 2.0f * rnd.nextFloat() - 0.5f;
     float r       = rnd.nextFloat() / 10.0f;
 
     for (int i = 0; i < x.size(); i++) {
-      float a = (i / (float)x.size() - cx) / r;
+      float a = ((float)i / (float)x.size() - cx) / r;
       x[i] += height * exp(-a * a);
     }
   }

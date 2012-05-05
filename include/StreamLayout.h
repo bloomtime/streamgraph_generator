@@ -22,12 +22,12 @@ public:
   void layout(LayerRefVec& layers) {
     int n             = layers[0]->size.size();
     int m             = layers.size();
-    std::vector<float> baseline(n);
-    std::vector<float> center(n);
-    float totalSize;
-    float moveUp;
-    float increase;
-    float belowSize;
+    std::vector<float> baseline(n,0.0f);
+    std::vector<float> center(n,0.0f);
+    float totalSize = 0.0f;
+    float moveUp = 0.0f;
+    float increase = 0.0f;
+    float belowSize = 0.0f;
 
     // Set shape of baseline values.
     for (int i = 0; i < n; i++) {
@@ -52,9 +52,9 @@ public:
             belowSize += layers[k]->size[i];
           }
           increase = layers[j]->size[i] - layers[j]->size[i - 1];
-          moveUp = totalSize == 0 ? 0 : (belowSize / totalSize);
+          moveUp = totalSize == 0 ? 0.0f : (belowSize / totalSize);
         }
-        center[i] += (moveUp - 0.5) * increase;
+        center[i] += (moveUp - 0.5f) * increase;
       }
 
       // set baseline to the bottom edge according to the center line

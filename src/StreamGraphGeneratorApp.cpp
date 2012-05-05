@@ -1,7 +1,11 @@
+#include <boost/algorithm/string/join.hpp>
+
 #include "cinder/app/AppCocoaTouch.h"
 #include "cinder/app/Renderer.h"
 #include "cinder/Path2d.h"
 #include "cinder/Camera.h"
+#include "cinder/Rand.h"
+#include "cinder/Utilities.h"
 
 #include "ColorPicker.h"
 #include "LastFMColorPicker.h"
@@ -37,11 +41,12 @@ class StreamGraphGeneratorApp : public AppCocoaTouch {
 	void setup();
 	void draw();
 
-    void graphVertex(int point, std::vector<float> &source, bool curve, bool pxl);
+    std::string join(std::vector<float> &floats);
+    void graphVertex(ci::Path2d &path, int point, std::vector<float> &source, bool curve, bool pxl);
     void scaleLayers(LayerRefVec &layers, int screenTop, int screenBottom);
     
     bool        isGraphCurved; // catmull-rom interpolation
-//    int         seed;          // random seed
+    int         seed;          // random seed
     
 //    float       DPI;
 //    float       widthInches;
@@ -72,7 +77,7 @@ class StreamGraphGeneratorApp : public AppCocoaTouch {
 void StreamGraphGeneratorApp::setup() {
     
     isGraphCurved = true; // catmull-rom interpolation
-//    seed          = 28;   // random seed
+    seed          = 28;   // random seed
     
 //    DPI           = 300;
 //    widthInches   = 3.5;
@@ -85,7 +90,7 @@ void StreamGraphGeneratorApp::setup() {
 //    noLoop();
     
     // GENERATE DATA
-    data     = new LateOnsetDataSource();
+    data     = new LateOnsetDataSource(seed);
     //data     = new BelievableDataSource();
     
     // ORDER DATA
@@ -103,8 +108,8 @@ void StreamGraphGeneratorApp::setup() {
     
     // COLOR DATA
     coloring = new LastFMColorPicker("layers-nyt.jpg");
-    //coloring = new LastFMColorPicker(this, "layers.jpg");
-    //coloring = new RandomColorPicker(this);
+    //coloring = new LastFMColorPicker("layers.jpg");
+    //coloring = new RandomColorPicker();
     
     //=========================================================================
     
@@ -131,6 +136,22 @@ void StreamGraphGeneratorApp::setup() {
     std::cout << "Coloring Method: " << layout->getName() << std::endl;
     std::cout << "Elapsed Time: " << layoutTime << "s" << std::endl;
     
+    for (int i = 0; i < numLayers; i++) {
+        LayerRef layer = layers[i];
+        std::cout << std::endl;    
+        std::cout << "name: " << layer->name << std::endl;
+        
+        std::cout << "size: " << join(layer->size) << std::endl;
+        std::cout << "yBottom: " << join(layer->yBottom) << std::endl;
+        std::cout << "yTop: " << join(layer->yTop) << std::endl;
+        std::cout << "rgb: " << layer->rgb << std::endl;
+        std::cout << "onset: " << layer->onset << std::endl;
+        std::cout << "end: " << layer->end << std::endl;
+        std::cout << "sum: " << layer->sum << std::endl;
+        std::cout << "volatility: " << layer->volatility << std::endl;    
+        std::cout << std::endl;    
+    }
+    
     delete data;
     delete ordering;
     delete layout;
@@ -143,20 +164,30 @@ void StreamGraphGeneratorApp::setup() {
 // detail: a pixel is not added to the top-most layer
 // detail: a shape is only drawn between it's non 0 values
 void StreamGraphGeneratorApp::draw() {
+
+    // calculate time to draw graph
+//    double time = getElapsedSeconds();
     
     int n = layers.size();
     int m = layers[0]->size.size();
     int start;
     int end;
-    int lastIndex = m - 1;
+//    int lastIndex = m - 1;
     int lastLayer = n - 1;
     int pxl;
     
     gl::clear( Color::white() );
+    gl::setMatricesWindow( getWindowWidth(), getWindowHeight() );
+    
+    gl::enableAlphaBlending();
+    gl::disableDepthRead();
+    gl::disableDepthWrite();
+    
 //    noStroke();
     
-    // calculate time to draw graph
-    double time = getElapsedSeconds();
+//    gl::color( Color::black() );
+//    gl::drawSolidRect( Rectf(getWindowWidth()/4.0f, getWindowHeight()/4.0f, 3.0f*getWindowWidth()/4.0f, 3.0f*getWindowHeight()/4.0f ) );
+    
     
     // generate graph
     for (int i = 0; i < n; i++) {
@@ -166,41 +197,44 @@ void StreamGraphGeneratorApp::draw() {
         
         // set fill color of layer
         gl::color(layers[i]->rgb);
+        //gl::color( ColorA( Rand::randFloat(), Rand::randFloat(), Rand::randFloat(), 0.5f ) );
         
         // draw shape
-        //beginShape();
         ci::Path2d path;
         
         // draw top edge, left to right
-        graphVertex(start, layers[i]->yTop, isGraphCurved, i == lastLayer);
+        graphVertex(path, start, layers[i]->yTop, isGraphCurved, i == lastLayer);
         for (int j = start; j <= end; j++) {
-            graphVertex(j, layers[i]->yTop, isGraphCurved, i == lastLayer);
+            graphVertex(path, j, layers[i]->yTop, isGraphCurved, i == lastLayer);
         }
-        graphVertex(end, layers[i]->yTop, isGraphCurved, i == lastLayer);
+        graphVertex(path, end, layers[i]->yTop, isGraphCurved, i == lastLayer);
         
         // draw bottom edge, right to left
-        graphVertex(end, layers[i]->yBottom, isGraphCurved, false);
+        graphVertex(path, end, layers[i]->yBottom, isGraphCurved, false);
         for (int j = end; j >= start; j--) {
-            graphVertex(j, layers[i]->yBottom, isGraphCurved, false);
+            graphVertex(path, j, layers[i]->yBottom, isGraphCurved, false);
         }
-        graphVertex(start, layers[i]->yBottom, isGraphCurved, false);
+        graphVertex(path, start, layers[i]->yBottom, isGraphCurved, false);
         
-        gl::draw( path );
-//        endShape(CLOSE);
+        path.close();
+        gl::drawSolid( path );
     }
     
     // give report
-    double layoutTime = getElapsedSeconds() - time;
-    std::cout << "Draw Time: " << layoutTime << "s" << std::endl;
+//    double layoutTime = getElapsedSeconds() - time;
+//    std::cout << "Draw Time: " << layoutTime << "s" << std::endl;
 }
 
-void StreamGraphGeneratorApp::graphVertex(int point, std::vector<float>& source, bool curve, bool pxl) {
+void StreamGraphGeneratorApp::graphVertex(ci::Path2d &path, int point, std::vector<float>& source, bool curve, bool pxl) {
     float x = lerp(0.0f, (float)getWindowWidth(), (float)point / (float)(layerSize - 1));
     float y = source[point] - (pxl ? 1 : 0);
-    if (curve) {
-//        curveVertex(x, y);
+    if (path.empty()) {
+        path.moveTo( x, y );
+    } else if (curve) {
+        // FIXME: equivalent to Processing's curveVertex here?
+        path.lineTo( x, y );
     } else {
-//        vertex(x, y);
+        path.lineTo( x, y );
     }
 }
 
@@ -208,16 +242,16 @@ void StreamGraphGeneratorApp::scaleLayers(LayerRefVec &layers, int screenTop, in
     // Figure out max and min values of layers.
     float min = layers[0]->yTop[0];
     float max = layers[0]->yBottom[0];
-    for (int i = 0; i < layers[0]->size.size(); i++) {
-        for (int j = 0; j < layers.size(); j++) {
+    for (int i = 0; i < layerSize; i++) {
+        for (int j = 0; j < numLayers; j++) {
             min = fmin(min, layers[j]->yTop[i]);
             max = fmax(max, layers[j]->yBottom[i]);
         }
     }
     
-    float scale = (screenBottom - screenTop) / (max - min);
-    for (int i = 0; i < layers[0]->size.size(); i++) {
-        for (int j = 0; j < layers.size(); j++) {
+    float scale = (float)(screenBottom - screenTop) / (max - min);
+    for (int i = 0; i < layerSize; i++) {
+        for (int j = 0; j < numLayers; j++) {
             layers[j]->yTop[i] = screenTop + scale * (layers[j]->yTop[i] - min);
             layers[j]->yBottom[i] = screenTop + scale * (layers[j]->yBottom[i] - min);
         }
@@ -243,5 +277,14 @@ void StreamGraphGeneratorApp::scaleLayers(LayerRefVec &layers, int screenTop, in
 //    return year() + "-" + nf(month(), 2) + "-" + nf(day(), 2) + "@" +
 //    nf(hour(), 2) + "-" + nf(minute(), 2) + "-" + nf(second(), 2);
 //}
+
+std::string StreamGraphGeneratorApp::join(std::vector<float> &floats) {
+    std::vector<std::string> strings(floats.size());
+    for (int i = 0; i < floats.size(); i++) {
+        strings[i] = ci::toString(floats[i]);
+    }
+    return boost::join(strings, ", ");
+}
+
 
 CINDER_APP_COCOA_TOUCH( StreamGraphGeneratorApp, RendererGl )

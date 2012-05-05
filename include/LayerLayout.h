@@ -29,13 +29,13 @@ protected:
    * ordered array of layers based on an initial baseline.
    */
   void stackOnBaseline(LayerRefVec& layers, std::vector<float>& baseline) {
-    // Put layers on top of the baseline.
+    // Put layers on top of the baseline.      
     for (int i = 0; i < layers.size(); i++) {
-      layers[i]->yBottom = baseline; // creates copies
+      layers[i]->yBottom = baseline;
       for (int j = 0; j < baseline.size(); j++) {
         baseline[j] -= layers[i]->size[j];
       }
-      baseline = layers[i]->yTop;
+      layers[i]->yTop = baseline;
     }
   }
 
