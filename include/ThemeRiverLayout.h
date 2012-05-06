@@ -11,6 +11,11 @@
  */
 class ThemeRiverLayout : public LayerLayout {
 public:
+
+  static LayerLayoutRef create() {
+    return LayerLayoutRef(new ThemeRiverLayout());
+  }    
+    
   std::string getName() {
     return "ThemeRiver";
   }
@@ -34,4 +39,9 @@ public:
     // Put layers on top of the baseline.
     stackOnBaseline(layers, baseline);
   }
+    
+private:
+
+  ThemeRiverLayout() {}
+
 };

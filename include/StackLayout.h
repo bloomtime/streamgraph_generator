@@ -12,6 +12,11 @@
  */
 class StackLayout : public LayerLayout {
 public:
+
+  static LayerLayoutRef create() {
+    return LayerLayoutRef(new StackLayout());
+  }    
+    
   std::string getName() {
     return "Stacked Layout";
   }
@@ -26,4 +31,7 @@ public:
     stackOnBaseline(layers, baseline);
   }
 
+private:
+
+  StackLayout() {}
 };

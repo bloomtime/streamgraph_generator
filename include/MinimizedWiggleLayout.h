@@ -15,6 +15,11 @@
  */
 class MinimizedWiggleLayout : public LayerLayout {
 public:
+    
+  static LayerLayoutRef create() {
+    return LayerLayoutRef(new MinimizedWiggleLayout());
+  }
+    
   std::string getName() {
     return "Minimized Wiggle Layout";
   }
@@ -35,4 +40,8 @@ public:
     // Put layers on top of the baseline.
     stackOnBaseline(layers, baseline);
   }
+
+private:
+    
+    MinimizedWiggleLayout() {}
 };

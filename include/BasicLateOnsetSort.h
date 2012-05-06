@@ -13,6 +13,10 @@
  */
 class BasicLateOnsetSort : public LayerSort {
 public:
+
+  static LayerSortRef create() {
+    return LayerSortRef(new BasicLateOnsetSort());
+  }
     
   std::string getName() {
     return "Late Onset Sorting, Top to Bottom";
@@ -23,4 +27,8 @@ public:
     std::sort(layers.begin(), layers.end(), OnsetComparator(true));
   }
 
+private:
+    
+    BasicLateOnsetSort() {}
+    
 };

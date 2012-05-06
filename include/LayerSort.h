@@ -5,6 +5,8 @@
 #include "cinder/Cinder.h"
 #include "Layer.h"
 
+typedef std::shared_ptr<class LayerSort> LayerSortRef;
+
 /**
  * LayerSort
  * Interface to sorting layers

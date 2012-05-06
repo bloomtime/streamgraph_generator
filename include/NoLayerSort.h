@@ -11,10 +11,19 @@
  */
 class NoLayerSort : public LayerSort {
 public:
+
+  static LayerSortRef create() {
+    return LayerSortRef(new NoLayerSort());
+  }    
+    
   std::string getName() {
     return "No Sorting";
   }
 
   void sort(LayerRefVec& layers) {}
 
+private:
+    
+  NoLayerSort() {}
+    
 };

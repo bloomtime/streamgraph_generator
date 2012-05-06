@@ -15,6 +15,11 @@
  */
 class LateOnsetSort : public LayerSort {
 public:
+
+  static LayerSortRef create() {
+    return LayerSortRef(new LateOnsetSort());
+  }
+    
   std::string getName() {
     return "Late Onset Sorting, Evenly Weighted";
   }
@@ -24,5 +29,9 @@ public:
     std::sort(layers.begin(), layers.end(), OnsetComparator(true));
     orderToOutside(layers);
   }
+
+private:
+
+  LateOnsetSort() {}
 
 };

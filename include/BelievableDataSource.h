@@ -16,10 +16,13 @@
 class BelievableDataSource : public StreamDataSource {
     
 public:
+
   ci::Rand rnd;
 
   // seeded, so we can reproduce results
-  BelievableDataSource(int seed=2): rnd(seed) {}
+  static StreamDataSourceRef create(int seed=2) {
+    return StreamDataSourceRef(new BelievableDataSource(seed));
+  }
 
   LayerRefVec make(int numLayers, int sizeArrayLength) {
     LayerRefVec layers(numLayers);
@@ -53,5 +56,9 @@ protected:
       x[i] += height * exp(-a * a);
     }
   }
+
+private:
+
+    BelievableDataSource(int seed): rnd(seed) {}
 
 };

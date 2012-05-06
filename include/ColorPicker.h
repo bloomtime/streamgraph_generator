@@ -2,6 +2,8 @@
 
 #include "Layer.h"
 
+typedef std::shared_ptr<class ColorPicker> ColorPickerRef;
+
 /**
  * ColorPicker
  * Interface for new coloring algorithms.

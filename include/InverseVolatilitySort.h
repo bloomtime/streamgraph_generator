@@ -15,6 +15,11 @@
 class InverseVolatilitySort : public LayerSort {
 
 public:
+    
+  static LayerSortRef create() {
+    return LayerSortRef(new InverseVolatilitySort());
+  }
+    
   std::string getName() {
     return "Inverse Volatility Sorting, Evenly Weighted";
   }
@@ -25,5 +30,9 @@ public:
 
     orderToOutside(layers);
   }
+    
+private:
+    
+  InverseVolatilitySort() {}
 
 };

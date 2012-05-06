@@ -15,6 +15,11 @@
 class StreamLayout : public LayerLayout {
 
 public:
+    
+  static LayerLayoutRef create() {
+    return LayerLayoutRef(new StreamLayout());
+  }
+    
   std::string getName() {
     return "Original Streamgraph Layout";
   }
@@ -64,5 +69,9 @@ public:
     // Put layers on top of the baseline.
     stackOnBaseline(layers, baseline);
   }
+
+private:
+    
+  StreamLayout() {}
 
 };

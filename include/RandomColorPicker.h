@@ -11,12 +11,16 @@
  * @author Martin Wattenberg
  */
 class RandomColorPicker : public ColorPicker {
+
 public:
+
   ci::Rand rnd;
 
   // seeded, so we can reproduce results
-  RandomColorPicker(int seed=2):rnd(seed) {}
-
+  static ColorPickerRef create(int seed=2) {
+    return ColorPickerRef(new RandomColorPicker(seed));
+  }    
+    
   std::string getName() {
     return "Random Colors";
   }
@@ -32,6 +36,7 @@ public:
   }
 
 protected:
+
   ci::ColorA hsb2rgb(float x, float y, float z) {
     float calcR = 0;
     float calcG = 0;
@@ -89,4 +94,8 @@ protected:
     return ci::ColorA8u(calcRi, calcGi, calcBi, calcAi);
   }
 
+private:
+
+    RandomColorPicker(int seed):rnd(seed) {}
+    
 };

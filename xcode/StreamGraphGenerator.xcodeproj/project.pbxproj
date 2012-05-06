@@ -39,6 +39,7 @@
 		C727C02D121B400300192073 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		C7FB19D5124BC0D70045AFD2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C7FB19D5124BC0D70045AFD3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		E20910A51555F26C003EDE33 /* StreamView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StreamView.h; path = ../include/StreamView.h; sourceTree = "<group>"; };
 		E2672991155466D700B0BE20 /* BasicLateOnsetSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicLateOnsetSort.h; path = ../include/BasicLateOnsetSort.h; sourceTree = "<group>"; };
 		E2672992155466D700B0BE20 /* BelievableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BelievableDataSource.h; path = ../include/BelievableDataSource.h; sourceTree = "<group>"; };
 		E2672993155466D700B0BE20 /* ColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorPicker.h; path = ../include/ColorPicker.h; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 				E26729D215547B7400B0BE20 /* layouts */,
 				E26729CE15547B0C00B0BE20 /* sorts */,
 				E2672999155466D700B0BE20 /* Layer.h */,
+				E20910A51555F26C003EDE33 /* StreamView.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";

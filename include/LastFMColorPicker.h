@@ -18,8 +18,8 @@ class LastFMColorPicker : public ColorPicker {
 public:
   ci::Surface source;
 
-  LastFMColorPicker(std::string src) {
-    source = ci::loadImage(ci::app::loadResource(src));
+  static ColorPickerRef create(const std::string &src) {
+    return ColorPickerRef(new LastFMColorPicker(src));
   }
 
   std::string getName() {
@@ -44,6 +44,7 @@ public:
   }
 
 protected:
+
   ci::ColorA get(float g1, float g2) {
     // get pixel coordinate based on provided parameters
     int x = floor(g1 * source.getWidth());
@@ -57,4 +58,10 @@ protected:
     return source.getPixel(ci::Vec2i(x,y));
   }
 
+private:
+    
+  LastFMColorPicker(const std::string &src) {
+    source = ci::loadImage(ci::app::loadResource(src));
+  }
+    
 };

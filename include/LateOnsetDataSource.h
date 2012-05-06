@@ -13,11 +13,15 @@
  * @author Martin Wattenberg
  */
 class LateOnsetDataSource : public StreamDataSource {
+
 public:
+
   ci::Rand rnd;
 
   // default seeded, so we can reproduce results
-  LateOnsetDataSource(int seed=2): rnd(seed) {}
+  static StreamDataSourceRef create(int seed=2) {
+    return StreamDataSourceRef(new LateOnsetDataSource(seed));
+  }
 
   LayerRefVec make(int numLayers, int sizeArrayLength) {
     LayerRefVec layers(numLayers);
@@ -35,6 +39,7 @@ public:
   }
 
 protected:
+
   void makeRandomArray(std::vector<float> &x, int onset, int duration) {
 
     // add a single random bump
@@ -53,5 +58,9 @@ protected:
       x[i] += height * yy;
     }
   }
+
+private:
+
+    LateOnsetDataSource(int seed): rnd(seed) {}
 
 };

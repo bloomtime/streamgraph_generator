@@ -3,6 +3,8 @@
 #include <string>
 #include "Layer.h"
 
+typedef std::shared_ptr<class LayerLayout> LayerLayoutRef;
+
 /**
  * LayerLayout
  * Abstract Class for new stacked graph layout algorithms
