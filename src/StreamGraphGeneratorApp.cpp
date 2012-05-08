@@ -88,8 +88,8 @@ void StreamGraphGeneratorApp::setup()
 
 void StreamGraphGeneratorApp::draw() {
 
-    // calculate time to draw graph
-    double time = getElapsedSeconds();
+//    // calculate time to draw graph
+//    double time = getElapsedSeconds();
     
     gl::clear( Color::white() );
     gl::setMatricesWindow( getWindowWidth(), getWindowHeight() );
@@ -100,9 +100,9 @@ void StreamGraphGeneratorApp::draw() {
     
     streamView->draw();
             
-    // give report
-    double layoutTime = getElapsedSeconds() - time;
-    std::cout << "Draw Time: " << layoutTime << "s" << std::endl;
+//    // give report
+//    double layoutTime = getElapsedSeconds() - time;
+//    std::cout << "Draw Time: " << layoutTime << "s" << std::endl;
 }
 
 CINDER_APP_COCOA_TOUCH( StreamGraphGeneratorApp, RendererGl )
