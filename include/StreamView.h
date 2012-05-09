@@ -51,7 +51,8 @@ public:
             int end   = fmin(layerSize - 1, layers[i]->end);
             
             // set fill color of layer
-            ci::gl::color(layers[i]->rgb);
+            // FIXME:
+//            ci::gl::color(layers[i]->rgb);
             //gl::color( ColorA( Rand::randFloat(), Rand::randFloat(), Rand::randFloat(), 0.5f ) );
             
             // draw shape
@@ -72,7 +73,8 @@ public:
             graphVertex(path, start, layers[i]->yBottom, isGraphCurved, false);
             
             path.close();
-            ci::gl::drawSolid( path );
+            // FIXME:
+//            ci::gl::drawSolid( path );
         }        
     }
     
