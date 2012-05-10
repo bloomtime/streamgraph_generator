@@ -19,6 +19,10 @@
 #include "LayerSort.h"
 #include "cinder/Path2d.h"
 #include "cinder/gl/gl.h"
+#include "cinder/Triangulate.h"
+#include "cinder/TriMesh.h"
+#include "cinder/gl/GlslProg.h"
+#include "cinder/Camera.h"
 
 typedef std::shared_ptr<class StreamView> StreamViewRef;
 
@@ -26,9 +30,9 @@ class StreamView
 {    
 public:
     
-    static StreamViewRef create( LayerRefVec layers, const ci::Vec2i &size, bool isGraphCurved=true )
+    static StreamViewRef create( std::shared_ptr<ci::Camera> camera, ci::gl::GlslProg shader, LayerRefVec layers, const ci::Vec2i &size, bool isGraphCurved=true )
     {
-        return StreamViewRef( new StreamView( layers, size, isGraphCurved ) );
+        return StreamViewRef( new StreamView( camera, shader, layers, size, isGraphCurved ) );
     }
     
     LayerRefVec layers;
@@ -36,6 +40,9 @@ public:
     ci::Vec2i size;
     int numLayers, layerSize;
 
+    std::shared_ptr<ci::Camera> camera;
+    ci::gl::GlslProg shader;
+    
     // adding a pixel to the top compensate for antialiasing letting
     // background through. This is overlapped by following layers, so no
     // distortion is made to data.
@@ -49,11 +56,6 @@ public:
         for (int i = 0; i < numLayers; i++) {
             int start = fmax(0, layers[i]->onset - 1);
             int end   = fmin(layerSize - 1, layers[i]->end);
-            
-            // set fill color of layer
-            // FIXME:
-//            ci::gl::color(layers[i]->rgb);
-            //gl::color( ColorA( Rand::randFloat(), Rand::randFloat(), Rand::randFloat(), 0.5f ) );
             
             // draw shape
             ci::Path2d path;
@@ -73,9 +75,28 @@ public:
             graphVertex(path, start, layers[i]->yBottom, isGraphCurved, false);
             
             path.close();
-            // FIXME:
-//            ci::gl::drawSolid( path );
+            
+            drawSolid( ci::Triangulator(path).calcMesh(), layers[i]->rgb );
         }        
+    }
+    
+    void drawSolid( const ci::TriMesh2d &mesh, ci::ColorA color )
+    {
+        if( mesh.getNumVertices() <= 0 )
+            return;
+        
+        ci::Matrix44f mat = camera->getProjectionMatrix() * camera->getModelViewMatrix();    
+
+        shader.bind();
+        shader.uniform("u_mvp_matrix", mat);    
+        shader.uniform("u_color", color);
+        
+        int position = shader.getAttribLocation("position");
+        
+        glVertexAttribPointer(position, 2, GL_FLOAT, false, 0, &(mesh.getVertices()[0]));
+        glEnableVertexAttribArray(position);
+        
+        glDrawElements( GL_TRIANGLES, mesh.getNumIndices(), GL_UNSIGNED_INT, &(mesh.getIndices()[0]) );
     }
     
 private:
@@ -115,7 +136,9 @@ private:
         }
     }
     
-    StreamView( LayerRefVec _layers, const ci::Vec2i &_size, bool _isGraphCurved ):
+    StreamView( std::shared_ptr<ci::Camera> _camera, ci::gl::GlslProg _shader, LayerRefVec _layers, const ci::Vec2i &_size, bool _isGraphCurved ):
+        camera(_camera),
+        shader(_shader),
         layers(_layers),
         size(_size),
         isGraphCurved(_isGraphCurved)
