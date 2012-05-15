@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <stdexcept>
 #include "cinder/Cinder.h"
 #include "cinder/Color.h"
 
